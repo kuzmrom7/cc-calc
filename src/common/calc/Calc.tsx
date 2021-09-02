@@ -21,7 +21,11 @@ type Props = {
 export const Calc: React.FC<Props> = ({ count, calories }) => {
   return (
     <Container>
-       Всего {count}&nbsp;шт&nbsp;🍏 {calories} ккал
+      {count > 0 ? 
+      <>Всего {count}&nbsp;шт&nbsp;🍏 {calories} ккал </>
+      :
+      <>Пока пусто 🥝</>
+    }
     </Container>
   )
 }

@@ -31,10 +31,13 @@ const Container = styled.button`
   font-weight: 500;
   font-size: 14px;
 `
-
-export const Button: React.FC = ({children}) => {
+type Props = {
+  onClick?: (e: React.MouseEvent) => void;
+  name?: string;
+}
+export const Button: React.FC<Props> = ({children, onClick, name}) => {
   return (
-    <Container>
+    <Container onClick={onClick} name={name}>
       {children}
     </Container>
   )

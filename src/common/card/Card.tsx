@@ -27,42 +27,52 @@ const Title = styled.div`
 `
 
 const Count = styled.div`
-  width: 20%;
-  padding: 0 2px;
-  font-size: 18px;
+  padding: 0;
+  font-size: 14px;
 `
 
 const ButtonWrap = styled.div`
   width: 30%;
 `
 const ButtonPlus = styled.div`
-  width: 80px;
+  width: 50px;
 `
 
 type Props = {
   title: string;
   count: number;
+  id: string;
+  onClick?: (id: string, type: string) => void;
 }
 
-export const Card: React.FC<Props> = ({title, count}) => {
+export const Card: React.FC<Props> = ({title, count, id, onClick}) => {
+
+  const handleClick = (e: React.MouseEvent) => {
+    const { name } = e.target as HTMLButtonElement;
+    let type = name;
+
+    if (onClick) {
+      onClick(id, type)
+    }
+  }
 
   return (
     <Container style={{background: colors[2]}}>
       <Title>{title}</Title>
       {count > 0 ? 
         <>
+          <ButtonPlus>
+            <Button onClick={handleClick} name="sub">-</Button>
+          </ButtonPlus>
           <Count>{count} шт.</Count>
           <ButtonPlus>
-            <Button>-</Button>
-          </ButtonPlus>
-          <ButtonPlus style={{marginLeft: '4px'}}>
-            <Button>+</Button>
+            <Button onClick={handleClick} name="add">+</Button>
           </ButtonPlus>
         </>
         :
         <>
           <ButtonWrap>
-            <Button>Добавить</Button>
+            <Button onClick={handleClick} name="add">Добавить</Button>
           </ButtonWrap>
         </>
         }
