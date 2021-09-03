@@ -58,7 +58,7 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
       return {
         id: item,
         count: cart[item].count,
-        totalCcal: cart[item].count * products[item].calories,
+        totalCcal: cart[item].count * ((products[item].calories / 100) * products[item].partWeight),
         product: products[item],
       };
     });
@@ -94,12 +94,11 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
         {state.length > 0 &&
           state.map((item) => (
             <Row key={item.id}>
-              {item.product.name} ( {item.count} шт.) = {item.product.calories} ккал * {item.count} = {item.totalCcal}{' '}
-              ккал
+              {item.product.name} ( {item.count} шт.) = {item.totalCcal} ккал
             </Row>
           ))}
         <RowTotal>
-          Итого : {total.count} шт. = {total.ccal} ккал
+          Итого : {total.count} шт. = {total.ccal.toFixed(2)} ккал
         </RowTotal>
       </Container>
     </>
