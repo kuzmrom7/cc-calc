@@ -2,9 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { ProductCartType } from '../../App';
-import { products, ProductType } from '../../db/products';
-import { Button } from '../button/Button';
+import { ProductCartType } from '../App';
+import { products, ProductType } from '../db/products';
+import { Button } from './Button';
 
 const Container = styled.div`
   display: flex;
@@ -94,7 +94,7 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
         {state.length > 0 &&
           state.map((item) => (
             <Row key={item.id}>
-              {item.product.name} ( {item.count} шт.) = {item.totalCcal} ккал
+              {item.product.name} ( {item.count} шт.) = {item.totalCcal.toFixed(2)} ккал
             </Row>
           ))}
         <RowTotal>

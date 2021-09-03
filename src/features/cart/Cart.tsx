@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Calc } from '../../common/calc/Calc';
-import { Card } from '../../common/card/Card';
-import { Content } from '../../common/content/Content';
-import { Total } from '../../common/total/Total';
+import { Calc } from '../../common/Calc';
+import { Card } from '../../common/Card';
+import { Content } from '../../common/Content';
+import { Total } from '../../common/Total';
 import { products } from '../../db/products';
 
 export type ProductCartType = {

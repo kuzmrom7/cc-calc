@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { ProductCartType } from '../../App';
-import { Button } from '../button/Button';
+import { ProductCartType } from '../App';
+import { Button } from './Button';
 
 const Container = styled.div`
   display: flex;

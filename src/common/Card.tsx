@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Button } from '../button/Button';
+import { Button } from './Button';
 
 const Container = styled.div`
   display: flex;
