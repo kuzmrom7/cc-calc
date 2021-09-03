@@ -1,11 +1,10 @@
+
 export type ProductType = {
-  [id: string]: {
-    name: string;
-    category: number[];
-    calories: number;
-  };
+  name: string;
+  category: number[];
+  calories: number;
 };
-export const products: ProductType = {
+export const products: { [id: string]: ProductType } = {
   0: {
     name: 'Филадельфия',
     category: [0],

@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.button`
-  background: #333;
+const Container = styled.button<{ theme: string }>`
   width: 100%;
   height: 50px;
-  color: #fff;
   border-radius: 20px;
   position: relative;
   display: inline-block;
@@ -19,7 +17,6 @@ const Container = styled.button`
   text-decoration: none;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid transparent;
   outline: 0;
   box-shadow: none;
   cursor: pointer;
@@ -29,14 +26,19 @@ const Container = styled.button`
   touch-action: manipulation;
   font-weight: 500;
   font-size: 14px;
+  color: ${(props) => (props.theme === 'outline' ? '#333' : '#fff')};
+  background: ${(props) => (props.theme === 'outline' ? '#fff' : '#333')};
+  border: ${(props) => (props.theme === 'outline' ? '1px solid #333' : '1px solid transparent;')};
 `;
+
 type Props = {
   onClick?: (e: React.MouseEvent) => void;
   name?: string;
+  theme?: 'outline' | 'base';
 };
-export const Button: React.FC<Props> = ({ children, onClick, name }) => {
+export const Button: React.FC<Props> = ({ children, onClick, name, theme }) => {
   return (
-    <Container onClick={onClick} name={name}>
+    <Container onClick={onClick} name={name} theme={theme}>
       {children}
     </Container>
   );

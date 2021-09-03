@@ -9,9 +9,9 @@ const Container = styled.div`
   height: 100%;
   color: #333;
   margin-top: 30px;
-  align-items: center;
   font-size: 14px;
   box-sizing: border-box;
+  padding: 0 10px;
 `;
 
 export const Content: React.FC = ({ children }) => {

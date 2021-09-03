@@ -2,8 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Button } from '../button/Button';
 
-const colors = ['#7CDAAD', '#ABDA7C', '#89E3E9', '#F87E94'];
-
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
@@ -15,6 +13,7 @@ const Container = styled.div`
   box-sizing: border-box;
   margin-top: 8px;
   padding: 0 10px;
+  border: 1px solid #333;
 `;
 const Title = styled.div`
   width: 50%;
@@ -64,7 +63,7 @@ export const Card: React.FC<Props> = ({ title, count, id, onClick }) => {
   };
 
   return (
-    <Container style={{ background: colors[2] }}>
+    <Container>
       <Title>{title}</Title>
       {count && count > 0 ? (
         <>

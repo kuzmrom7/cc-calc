@@ -1,10 +1,7 @@
-import { useState } from 'react';
-import { Calc } from './common/calc/Calc';
-import { Card } from './common/card/Card';
-import { Content } from './common/content/Content';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Header } from './common/header/Header';
 import { Wrap } from './common/wrap/Wrap';
-import { products } from './db/products';
+import Cart from './features/cart/Cart';
 
 export type ProductCartType = {
   [id: string]: {
@@ -13,29 +10,17 @@ export type ProductCartType = {
 };
 
 function App() {
-  const [cart, setCart] = useState<ProductCartType>({});
-
-  const handleClick = (id: string, type: string) => {
-    setCart((prev) => ({
-      ...prev,
-      [id]: {
-        count: prev[id] ? (type === 'add' ? prev[id].count + 1 : prev[id].count - 1) : 1,
-      },
-    }));
-  };
-
   return (
-    <Wrap>
-      <Header />
-      <Content>
-        <Calc cart={cart} />
-      </Content>
-      <Content>
-        {Object.keys(products).map((item) => (
-          <Card key={item} id={item} title={products[item].name} count={cart?.[item]?.count} onClick={handleClick} />
-        ))}
-      </Content>
-    </Wrap>
+    <Router>
+      <Wrap>
+        <Header />
+        <Switch>
+          <Route path="/">
+            <Cart />
+          </Route>
+        </Switch>
+      </Wrap>
+    </Router>
   );
 }
 
