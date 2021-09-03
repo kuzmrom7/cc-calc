@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -13,16 +13,16 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-`
+`;
 const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-`
+`;
 const Icon = styled.div`
   position: absolute;
   left: 10px;
-`
+`;
 
 export const Header: React.FC = () => {
   return (
@@ -30,5 +30,5 @@ export const Header: React.FC = () => {
       <Icon>🍜</Icon>
       <Title>Zhirnyy app</Title>
     </Container>
-  )
-}
+  );
+};

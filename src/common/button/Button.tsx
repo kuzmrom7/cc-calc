@@ -1,6 +1,5 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-
 
 const Container = styled.button`
   background: #333;
@@ -30,15 +29,15 @@ const Container = styled.button`
   touch-action: manipulation;
   font-weight: 500;
   font-size: 14px;
-`
+`;
 type Props = {
   onClick?: (e: React.MouseEvent) => void;
   name?: string;
-}
-export const Button: React.FC<Props> = ({children, onClick, name}) => {
+};
+export const Button: React.FC<Props> = ({ children, onClick, name }) => {
   return (
     <Container onClick={onClick} name={name}>
       {children}
     </Container>
-  )
-}
+  );
+};
