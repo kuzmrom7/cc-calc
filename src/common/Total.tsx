@@ -54,14 +54,16 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
   const [total, setTotal] = useState({ count: 0, ccal: 0 });
 
   useEffect(() => {
-    const mapped: MappedProducts[] = Object.keys(cart).map((item: string) => {
-      return {
-        id: item,
-        count: cart[item].count,
-        totalCcal: cart[item].count * ((products[item].calories / 100) * products[item].partWeight),
-        product: products[item],
-      };
-    });
+    const mapped: MappedProducts[] = Object.keys(cart)
+      .filter((item) => cart[item].count > 0)
+      .map((item: string) => {
+        return {
+          id: item,
+          count: cart[item].count,
+          totalCcal: cart[item].count * ((products[item].calories / 100) * products[item].partWeight),
+          product: products[item],
+        };
+      });
 
     setState(mapped);
   }, [cart]);
