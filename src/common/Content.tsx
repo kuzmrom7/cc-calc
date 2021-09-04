@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   color: #333;
-  margin-top: 30px;
+  margin-bottom: 30px;
   font-size: 14px;
   box-sizing: border-box;
   padding: 0 10px;

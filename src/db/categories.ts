@@ -4,11 +4,9 @@ export type CategoriesType = {
     places: number[];
   };
 };
-export const categories: Set<CategoriesType> = new Set([
-  {
-    0: {
-      name: 'Роллы',
-      places: [0],
-    },
+export const categories: CategoriesType = {
+  0: {
+    name: 'Роллы',
+    places: [0],
   },
-]);
+};
