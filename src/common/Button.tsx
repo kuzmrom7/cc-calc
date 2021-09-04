@@ -9,7 +9,7 @@ const Container = styled.button<{ theme: string }>`
   display: inline-block;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 5px;
   margin: 0;
   white-space: nowrap;
   font-family: inherit;
@@ -28,7 +28,7 @@ const Container = styled.button<{ theme: string }>`
   font-size: 14px;
   color: ${(props) => (props.theme === 'outline' ? '#333' : '#fff')};
   background: ${(props) => (props.theme === 'outline' ? '#fff' : '#333')};
-  border: ${(props) => (props.theme === 'outline' ? '1px solid #333' : '1px solid transparent;')};
+  border: ${(props) => (props.theme === 'outline' ? '2px solid #333' : '1px solid transparent;')};
 `;
 
 type Props = {

@@ -1,19 +1,17 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import CardMaterial from '@material-ui/core/Card';
+import CardContentMaterial from '@material-ui/core/CardContent';
 import { Button } from './Button';
+import { makeStyles } from '@material-ui/core';
 
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 80px;
-  color: #333;
-  align-items: center;
-  font-size: 14px;
-  box-sizing: border-box;
-  margin-top: 8px;
-  padding: 0 10px;
-  border: 1px solid #333;
+const fade = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 `;
 const Title = styled.div`
   width: 50%;
@@ -26,24 +24,30 @@ const Count = styled.div`
   padding: 0;
   font-size: 14px;
 `;
-const ButtonWrap = styled.div`
-  width: 30%;
-`;
-const ButtonPlus = styled.div`
-  width: 50px;
-`;
-const fade = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const FadeIn = styled.div`
+const ButtonWrap = styled.div<{ type?: string }>`
+  width: ${(props) => (props.type === 'full' ? '100%' : '50px')};
   animation: ${fade} 0.4s;
+  max-width: 150px;
 `;
+const Controls = styled.div<{ type?: string }>`
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => (props.type === 'full' ? 'flex-end' : 'space-around')};
+`;
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    width: '100%',
+    marginBottom: '8px',
+  },
+  content: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+}));
 
 type Props = {
   title: string;
@@ -53,6 +57,8 @@ type Props = {
 };
 
 export const Card: React.FC<Props> = ({ title, count, id, onClick }) => {
+  const classes = useStyles();
+
   const handleClick = (e: React.MouseEvent) => {
     const { name } = e.target as HTMLButtonElement;
     let type = name;
@@ -63,37 +69,33 @@ export const Card: React.FC<Props> = ({ title, count, id, onClick }) => {
   };
 
   return (
-    <Container>
-      <Title>{title}</Title>
-      {count && count > 0 ? (
-        <>
-          <ButtonPlus>
-            <FadeIn>
+    <CardMaterial className={classes.root}>
+      <CardContentMaterial className={classes.content}>
+        <Title>{title}</Title>
+        {count && count > 0 ? (
+          <Controls>
+            <ButtonWrap>
               <Button onClick={handleClick} name="sub">
                 -
               </Button>
-            </FadeIn>
-          </ButtonPlus>
-          <Count>{count} шт.</Count>
-          <ButtonPlus>
-            <FadeIn>
+            </ButtonWrap>
+            <Count>{count} шт.</Count>
+            <ButtonWrap>
               <Button onClick={handleClick} name="add">
                 +
               </Button>
-            </FadeIn>
-          </ButtonPlus>
-        </>
-      ) : (
-        <>
-          <ButtonWrap>
-            <FadeIn>
+            </ButtonWrap>
+          </Controls>
+        ) : (
+          <Controls type="full">
+            <ButtonWrap type="full">
               <Button onClick={handleClick} name="add">
                 Добавить
               </Button>
-            </FadeIn>
-          </ButtonWrap>
-        </>
-      )}
-    </Container>
+            </ButtonWrap>
+          </Controls>
+        )}
+      </CardContentMaterial>
+    </CardMaterial>
   );
 };

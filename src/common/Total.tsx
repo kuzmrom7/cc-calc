@@ -27,7 +27,7 @@ const RowTotal = styled.div`
   font-weight: 500;
 `;
 const ButtonWrap = styled.div`
-  width: 20%;
+  min-width: 20%;
   margin-left: 4px;
 `;
 const RowBtn = styled.div`
@@ -83,12 +83,12 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
       <RowBtn>
         <ButtonWrap>
           <Button theme="outline" onClick={onBack}>
-            ⬅️
+            Назад
           </Button>
         </ButtonWrap>
         <ButtonWrap>
           <Button theme="outline" onClick={onClear}>
-            ❌
+            Очистить
           </Button>
         </ButtonWrap>
       </RowBtn>

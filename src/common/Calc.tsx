@@ -17,10 +17,16 @@ const Container = styled.div`
   box-sizing: border-box;
   width: 100%;
   justify-content: space-between;
+  background-color: #fff;
+  min-height: 92px;
 `;
 const ButtonWrap = styled.div`
-  width: 20%;
+  width: 100%;
   margin-left: 4px;
+`;
+const Controls = styled.div`
+  display: flex;
+  width: 40%;
 `;
 
 type Props = {
@@ -44,18 +50,18 @@ export const Calc: React.FC<Props> = ({ cart, onSubmit, onClear }) => {
     <Container>
       <div>{count > 0 ? <>Всего {count}&nbsp;шт&nbsp;🍏 </> : <>Пока пусто 🥝</>}</div>
       {count > 0 && (
-        <>
+        <Controls>
+          {/* <ButtonWrap>
+            <Button theme="outline" onClick={onClear}>
+              Сброс
+            </Button>
+          </ButtonWrap> */}
           <ButtonWrap>
             <Button theme="outline" onClick={onSubmit}>
-              ✅
+              Готово
             </Button>
           </ButtonWrap>
-          <ButtonWrap>
-            <Button theme="outline" onClick={onClear}>
-              ❌
-            </Button>
-          </ButtonWrap>
-        </>
+        </Controls>
       )}
     </Container>
   );
