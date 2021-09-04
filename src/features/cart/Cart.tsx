@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Calc, Card, Content, Total } from '../../common';
+import { Calc, Card, AppContent, Total } from '../../common';
 import { products } from '../../db/products';
 
 export type ProductCartType = {
@@ -47,10 +47,10 @@ function Cart() {
     <>
       {state === 'cart' && (
         <>
-          <Content>
+          <AppContent>
             <Calc cart={cart} onClear={handleClear} onSubmit={handleSubmit} />
-          </Content>
-          <Content>
+          </AppContent>
+          <AppContent>
             {Object.keys(products).map((item) => (
               <Card
                 key={item}
@@ -60,13 +60,13 @@ function Cart() {
                 onClick={handleClick}
               />
             ))}
-          </Content>
+          </AppContent>
         </>
       )}
       {state === 'total' && (
-        <Content>
+        <AppContent>
           <Total cart={cart} onBack={() => setState('cart')} onClear={handleClear} />
-        </Content>
+        </AppContent>
       )}
     </>
   );

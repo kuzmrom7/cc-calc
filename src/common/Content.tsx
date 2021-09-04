@@ -13,6 +13,6 @@ const Container = styled.div`
   padding: 0 10px;
 `;
 
-export const Content: React.FC = ({ children }) => {
+export const AppContent: React.FC = ({ children }) => {
   return <Container>{children}</Container>;
 };
