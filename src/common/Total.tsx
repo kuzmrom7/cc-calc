@@ -15,7 +15,7 @@ const Row = styled.div`
   display: flex;
   padding: 20px 5px;
   margin-top: 6px;
-  border: 1px solid #333;
+  border-bottom: 1px solid #333;
   font-size: 18px;
   font-weight: 500;
 `;
@@ -23,8 +23,8 @@ const RowTotal = styled.div`
   display: flex;
   padding: 20px 5px;
   margin-top: 6px;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
 `;
 const ButtonWrap = styled.div`
   min-width: 20%;
@@ -96,11 +96,11 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
         {state.length > 0 &&
           state.map((item) => (
             <Row key={item.id}>
-              {item.product.name} ( {item.count} шт.) = {item.totalCcal.toFixed(2)} ккал
+              {item.product.name} ({item.count} шт) = {item.totalCcal.toFixed(2)} ккал
             </Row>
           ))}
         <RowTotal>
-          Итого : {total.count} шт. = {total.ccal.toFixed(2)} ккал
+          Итого : {total.count} шт = {total.ccal.toFixed(2)} ккал
         </RowTotal>
       </Container>
     </>

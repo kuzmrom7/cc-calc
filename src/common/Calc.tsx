@@ -2,24 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import CardMaterial from '@material-ui/core/Card';
+import CardContentMaterial from '@material-ui/core/CardContent';
 import { ProductCartType } from '../App';
 import { Button } from './Button';
+import { makeStyles } from '@material-ui/core';
 
-const Container = styled.div`
-  display: flex;
-  font-size: 18px;
-  box-sizing: border-box;
-  color: #333;
-  font-weight: 600;
-  align-items: center;
-  border: 1px solid #ccc;
-  padding: 20px;
-  box-sizing: border-box;
-  width: 100%;
-  justify-content: space-between;
-  background-color: #fff;
-  min-height: 92px;
-`;
 const ButtonWrap = styled.div`
   width: 100%;
   margin-left: 4px;
@@ -29,6 +17,23 @@ const Controls = styled.div`
   width: 40%;
 `;
 
+const useStyles = makeStyles(() => ({
+  root: {
+    display: 'flex',
+    width: '100%',
+    minHeight: '92px',
+  },
+  content: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontSize: '18px',
+    color: '#333',
+    fontWeight: 600,
+  },
+}));
+
 type Props = {
   cart: ProductCartType;
   onSubmit: () => void;
@@ -36,6 +41,8 @@ type Props = {
 };
 
 export const Calc: React.FC<Props> = ({ cart, onSubmit, onClear }) => {
+  const classes = useStyles();
+
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -47,22 +54,19 @@ export const Calc: React.FC<Props> = ({ cart, onSubmit, onClear }) => {
   }, [cart]);
 
   return (
-    <Container>
-      <div>{count > 0 ? <>Всего {count}&nbsp;шт&nbsp;🍏 </> : <>Пока пусто 🥝</>}</div>
-      {count > 0 && (
-        <Controls>
-          {/* <ButtonWrap>
-            <Button theme="outline" onClick={onClear}>
-              Сброс
-            </Button>
-          </ButtonWrap> */}
-          <ButtonWrap>
-            <Button theme="outline" onClick={onSubmit}>
-              Готово
-            </Button>
-          </ButtonWrap>
-        </Controls>
-      )}
-    </Container>
+    <CardMaterial className={classes.root}>
+      <CardContentMaterial className={classes.content}>
+        <div>{count > 0 ? <>Всего {count}&nbsp;шт&nbsp;🍏 </> : <>Пока пусто 🥝</>}</div>
+        {count > 0 && (
+          <Controls>
+            <ButtonWrap>
+              <Button theme="outline" onClick={onSubmit}>
+                Готово
+              </Button>
+            </ButtonWrap>
+          </Controls>
+        )}
+      </CardContentMaterial>
+    </CardMaterial>
   );
 };
