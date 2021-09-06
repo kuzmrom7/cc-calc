@@ -2,22 +2,20 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ProductCartType } from '../App';
 import { products, ProductType } from '../db/products';
 import { Button } from './Button';
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 14px;
-`;
-const Row = styled.div`
-  display: flex;
-  padding: 20px 5px;
-  margin-top: 6px;
-  border-bottom: 1px solid #333;
-  font-size: 18px;
-  font-weight: 500;
 `;
 const RowTotal = styled.div`
   display: flex;
@@ -36,6 +34,17 @@ const RowBtn = styled.div`
   margin-bottom: 10px;
 `;
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      width: '100%',
+    },
+    heading: {
+      fontSize: '18px',
+    },
+  }),
+);
+
 type Props = {
   cart: ProductCartType;
   onBack?: () => void;
@@ -49,7 +58,10 @@ type MappedProducts = {
   product: ProductType;
 };
 
+
 export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
+  const classes = useStyles();
+
   const [state, setState] = useState<Array<MappedProducts>>([]);
   const [total, setTotal] = useState({ count: 0, ccal: 0 });
 
@@ -93,15 +105,28 @@ export const Total: React.FC<Props> = ({ cart, onBack, onClear }) => {
         </ButtonWrap>
       </RowBtn>
       <Container>
-        {state.length > 0 &&
-          state.map((item) => (
-            <Row key={item.id}>
-              {item.product.name} ({item.count} шт) = {item.totalCcal.toFixed(2)} ккал
-            </Row>
-          ))}
+        <div className={classes.root}>
+          {state.length > 0 &&
+            state.map((item) => (
+              <Accordion key={item.id}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>{item.product.name} ({item.count} шт = {item.product.partWeight * item.count} гр. = {item.totalCcal.toFixed(2)} ккал)</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  Кол-во: {item.count} <br />
+                  Всего ккалл {item.totalCcal}
+                </AccordionDetails>
+              </Accordion>
+            ))}
+        </div>
         <RowTotal>
           Итого : {total.count} шт = {total.ccal.toFixed(2)} ккал
         </RowTotal>
+
       </Container>
     </>
   );
