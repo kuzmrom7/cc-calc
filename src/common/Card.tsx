@@ -1,18 +1,10 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import { styled } from '@linaria/react';
 import CardMaterial from '@material-ui/core/Card';
 import CardContentMaterial from '@material-ui/core/CardContent';
 import { Button } from './Button';
 import { makeStyles } from '@material-ui/core';
 
-const fade = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
 const Title = styled.div`
   width: 50%;
   padding: 10px 0;
@@ -26,8 +18,17 @@ const Count = styled.div`
 `;
 const ButtonWrap = styled.div<{ type?: string }>`
   width: ${(props) => (props.type === 'full' ? '100%' : '50px')};
-  animation: ${fade} 0.4s;
+  animation: fade 0.4s;
   max-width: 150px;
+
+  @keyframes fade {
+    from {
+    opacity: 0;
+    }
+    to {
+    opacity: 1;
+    }
+  }
 `;
 const Controls = styled.div<{ type?: string }>`
   width: 45%;

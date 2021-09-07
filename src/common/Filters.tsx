@@ -1,6 +1,6 @@
 import ChipMaterial from '@material-ui/core/Chip';
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import { CategoriesType } from '../db/categories';
 
 const Container = styled.div`

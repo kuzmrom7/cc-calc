@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import CardMaterial from '@material-ui/core/Card';
 import CardContentMaterial from '@material-ui/core/CardContent';
 import { ProductCartType } from '../App';

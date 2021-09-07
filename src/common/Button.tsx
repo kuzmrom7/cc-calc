@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 
-const Container = styled.button<{ theme: string }>`
+const Container = styled.button<{ theme?: string }>`
   width: 100%;
   height: 50px;
   border-radius: 20px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import styled from 'styled-components';
+import { styled } from '@linaria/react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { ProductCartType } from '../App';
 import { products, ProductType } from '../db/products';
