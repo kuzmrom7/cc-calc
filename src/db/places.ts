@@ -3,6 +3,7 @@ export type PlaceType = {
     name: string;
   };
 };
+
 export const places: Set<PlaceType> = new Set([
   {
     0: {

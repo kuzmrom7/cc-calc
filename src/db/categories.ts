@@ -4,6 +4,7 @@ export type CategoriesType = {
     places: number[];
   };
 };
+
 export const categories: CategoriesType = {
   0: {
     name: 'Роллы',
