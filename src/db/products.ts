@@ -45,13 +45,13 @@ export const products: { [id: string]: ProductType } = {
   6: {
     name: 'Исиномаки',
     category: [0],
-    calories: 0,
-    partWeight: 0
+    calories: 358,
+    partWeight: 31.25
   },
   7: {
     name: 'Ролл Горячий краб',
     category: [0],
-    calories: 0,
-    partWeight: 0
+    calories: 250,
+    partWeight: 39.375
   },
 };
