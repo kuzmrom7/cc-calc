@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
-import { Calc, Card, AppContent, Total } from '../../common';
-import { products } from '../../db/products';
+import { Calc, Card, AppContent, Total } from 'common';
+import { products } from 'db/products';
+import { useLocalStorage } from 'hooks/useLocalStorage';
+
+const localStorageKey = 'zhir-app-cart';
 
 export type ProductCartType = {
   [id: string]: {
@@ -9,22 +12,9 @@ export type ProductCartType = {
   };
 };
 
-const localStorageKey = 'zhir-app-cart';
-
 function Cart() {
   const [state, setState] = useState<'cart' | 'total'>('cart');
-  const [cart, setCart] = useState<ProductCartType>({});
-
-  useEffect(() => {
-    let data = localStorage.getItem(localStorageKey);
-    if (data) {
-      setCart(JSON.parse(data));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(cart));
-  }, [cart]);
+  const [cart, setCart] = useLocalStorage<ProductCartType>(localStorageKey)
 
   const handleClick = (id: string, type: string) => {
     setCart((prev) => ({
